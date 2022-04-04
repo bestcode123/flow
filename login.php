@@ -6,6 +6,10 @@
 </head>
 <body>
     <?php
+    function inside() {
+        echo "Hello" . $usrn;
+    }
+    
     function login() {
         $servername = "localhost";
         $username = "id18724764_root";
@@ -29,7 +33,9 @@
             while($row = $result->fetch_assoc()) {
               if($row['username'] === $_POST['username'] && $row['password'] === $_POST['password']) {
                   $in = TRUE;
-                  $uid = $row['uid'];   
+                  $usrn = $row['username'];
+                  $psw = $row['password'];
+                  $uid = $row['uid']; 
               }
             }
           } else {
@@ -37,7 +43,7 @@
         }
         
         if($in) {
-            echo $uid;
+            inside();
         }
 
         $conn->close();

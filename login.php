@@ -39,7 +39,7 @@
               }
             }
           } else {
-            echo "0 results";
+            echo "There is not an account linked to this username";
         }
         
         if($in) {
@@ -62,5 +62,7 @@
         </form>
     </div>
     <a href="signin.php">Sign Up</a>
+    <a href="post.php">Post</a>
+    <p>Note: if you are wanting to use the post function, you will have to login first</p>
 </body>
 </html>

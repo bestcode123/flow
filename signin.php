@@ -37,7 +37,9 @@
             <input type="text" placeholder="username" name="username" />
             <input type="password" placeholder="password" name="password" />
             <input type="submit" name="submit" />
-        </form>
+        </form><br />
+        <a href="login.php">Login</a>
     </div>
+
 </body>
 </html>

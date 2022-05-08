@@ -22,8 +22,8 @@
         }
 
         // Login Credential Retreival:
-        $sql = "SELECT uid, username, password FROM userinfo";
-        $result = $conn->query($sql);
+        $login_sql = "SELECT uid, username, password FROM userinfo";
+        $result = $conn->query($login_sql);
 
         // Login Credential Authentication:
         $in = FALSE;
@@ -45,6 +45,10 @@
         $post_title = $_POST['post_title'];
         $post_body = $_POST['post_body'];
         $post_alias = $_POST['post_alias'];
+
+        // Post Database Implementation:
+        $post_sql = "INSERT INTO posts (title, body, alias) VALUES (" . $post_title . ", " . $post_body . ", " . $post_alias . ")"
+        $conn->query($post_sql)
     }
     ?>
     <div class="enter_info">

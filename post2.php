@@ -7,6 +7,7 @@
     <title>Document</title>
 </head>
 <body>
+    <a href="feed.php">Feed</a>
     <?php
     function inside() {}
 

@@ -7,79 +7,63 @@
     <title>Document</title>
 </head>
 <body>
+    <a href="feed.php">Feed</a>
     <?php
-    $ison = false
+    function inside() {}
 
-    function inside() {
-        $ison = true
-    }
-    
     function login() {
+        // Connection To Database:
         $servername = "localhost";
         $username = "id18724764_root";
         $password = "kxgGvBwe57\$SzHw-";
         $database = "id18724764_main";
-
         $conn = new mysqli($servername, $username, $password, $database);
-
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
+        if($conn->connect_error) {
+            die("connection Error: " . $conn->connect_error);
         }
 
-        $sql = "SELECT uid, username, password FROM userinfo";
+        // Login Credential Retreival:
+        $login_sql = "SELECT uid, username, password FROM userinfo";
+        $result = $conn->query($login_sql);
 
-        $result = $conn->query($sql);
-        
+        // Login Credential Authentication:
         $in = FALSE;
         $uid = 0;
-        if ($result->num_rows > 0) {
-            // output data of each row
+        if($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
-              if($row['username'] === $_POST['username'] && $row['password'] === $_POST['password']) {
-                  $in = TRUE;
-                  $usrn = $row['username'];
-                  $psw = $row['password'];
-                  $uid = $row['uid']; 
-              }
+                if($row['username'] === $_POST['secure_username'] && $row['password'] === $_POST['secure_password']) {
+                    $in = TRUE;
+                    $usrn = $row['username'];
+                    $psw = $row['password'];
+                    $uid = $row['uid'];
+                }
+            } if(!$in) {
+                echo("Error: Your Credentials Do Not Match Our Records");
             }
-          } else {
-            echo "There is not an account linked to this username";
-        }
-        
-        if($in) {
-            inside();
         }
 
-        $conn->close();
-    }
+        // Post Information Retreival;
+        $post_title = $_POST['post_title'];
+        $post_body = $_POST['post_body'];
+        $post_alias = $_POST['post_alias'];
 
-    if(isset($_POST['submit'])) {
-        login();
-    } if(isset($_POST['submit2'])) {
-        if($ison == true) {
-            post();
-        } else {
-            echo ""
-        }
+        // Post Database Implementation:
+        $post_sql = "INSERT INTO posts (title, body, alias) VALUES (" . $post_title . ", " . $post_body . ", " . $post_alias . ")";
+        $conn->query($post_sql);
     }
     ?>
-    <div class="login_panel">
-        <form name="loginform" action="" method="post">
-            <input type="text" placeholder="username" name="username" />
-            <input type="password" placeholder="password" name="password" />
+    <div class="enter_info">
+        <form name="post_form" action="" method="post">
+            Username: <input type="text" name="secure_username" />
+            Password: <input type="password" name="secure_password" />
+            <br /><hr />
+            Post Data: 
+            Title: <input type="text" name="post_title" />
+            Body: <input type="text" name="post_body" />
+            Alias: <input type="text" name="post_alias" />
             <input type="submit" name="submit" />
         </form>
     </div>
-    <a href="signin.php">Sign Up</a>
-    <a href="post.php">Post</a>
-    <p>Note: if you are wanting to use the post function, you will have to login first</p>
-</body>
-</html>
-    <div class="post_panel">
-        <form name="postform" action="" method="post">
-            Title: <input type="text" name="title" placeholder="Enter Title" />
-            Body: <input type="text" name="body" placeholder="Body" />
-            <input type="submit" name="submit2" />
-        </form>
+
 </body>
 </html>

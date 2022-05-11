@@ -5,6 +5,6 @@
     <title>Document</title>
 </head>
 <body>
-    <a href="post2.php">Post</a>
+    <a href="post.php">Post</a>
 </body>
 </html>

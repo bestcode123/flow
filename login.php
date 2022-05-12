@@ -7,7 +7,7 @@
 <body>
     <?php
     function inside() {
-        $file_path = "data.filesafe/currentusrn"
+        $file_path = "data.filesafe/currentusrn";
         $current = file_get_contents($file_path);
         file_put_contents($file_path, $usrn);
         echo "Hello" . $usrn;

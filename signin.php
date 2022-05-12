@@ -31,6 +31,7 @@
         login();
     }
     
+    $conn->close();
     ?>
     <div class="login_panel">
         <form name="loginform" action="" method="post">

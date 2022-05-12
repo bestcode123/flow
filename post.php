@@ -58,6 +58,8 @@
             login();
         }
     }
+
+    $conn->close();
     ?>
     <div class="enter_info">
         <form name="post_form" action="" method="post">

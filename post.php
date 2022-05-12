@@ -29,17 +29,18 @@
         // Login Credential Authentication:
         $in = FALSE;
         $uid = 0;
-        if($result->num_rows > 0) {
+        if ($result->num_rows > 0) {
+            // output data of each row
             while($row = $result->fetch_assoc()) {
-                if($row['username'] === $_POST['secure_username'] && $row['password'] === $_POST['secure_password']) {
-                    $in = TRUE;
-                    $usrn = $row['username'];
-                    $psw = $row['password'];
-                    $uid = $row['uid'];
-                }
-            } if(!$in) {
-                echo("Error: Your Credentials Do Not Match Our Records");
+              if($row['username'] === $_POST['username'] && $row['password'] === $_POST['password']) {
+                  $in = TRUE;
+                  $usrn = $row['username'];
+                  $psw = $row['password'];
+                  $uid = $row['uid']; 
+              }
             }
+          } else {
+            echo "There is not an account linked to this username";
         }
 
         // Post Information Retreival;
@@ -48,14 +49,20 @@
         $post_alias = $_POST['post_alias'];
 
         // Post Database Implementation:
-        $post_sql = "INSERT INTO posts (title, body, alias) VALUES (" . $post_title . ", " . $post_body . ", " . $post_alias . ")";
-        $conn->query($post_sql);
+        if(TRUE) {
+            $post_sql = "INSERT INTO posts (title, body, alias) VALUES (\"" . $post_title . "\", \"" . $post_body . "\", \"" . $post_alias . "\")";
+            $conn->query($post_sql);
+        }
+
+        if(isset($_POST['submit'])) {
+            login();
+        }
     }
     ?>
     <div class="enter_info">
         <form name="post_form" action="" method="post">
-            Username: <input type="text" name="secure_username" />
-            Password: <input type="password" name="secure_password" />
+            Username: <input type="text" name="username" />
+            Password: <input type="password" name="password" />
             <br /><hr />
             Post Data: 
             Title: <input type="text" name="post_title" />

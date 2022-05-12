@@ -10,9 +10,9 @@
     <?php
         // Simple Feed Implementation:
         $servername = "localhost";
-        $username = "id18724764_root";
-        $password = "kxgGvBwe57\$SzHw-";
-        $database = "id18724764_main";
+        $username = "id18724764_bestcode123";
+        $password = "LkT*tiZHpXgE15is";
+        $database = "id18724764_main_database";
         $conn = new mysqli($servername, $username, $password, $database);
         if($conn->connect_error) {
             die("connection Error: " . $conn->connect_error);

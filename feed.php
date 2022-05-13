@@ -10,20 +10,20 @@
     <?php
         // Simple Feed Implementation:
         $servername = "localhost";
-        $username = "id18724764_bestcode123";
-        $password = "LkT*tiZHpXgE15is";
-        $database = "id18724764_main_database";
+        $username = "id18924381_root";
+        $password = "GSkN|x55\Jrh+]48";
+        $database = "id18924381_main";
         $conn = new mysqli($servername, $username, $password, $database);
         if($conn->connect_error) {
             die("connection Error: " . $conn->connect_error);
         }
 
         // 1 - Fetch:
-        $feed_fetch_sql = "SELECT (postid, title, body, alias) FROM posts";
-        $result = $conn->query($feed_fetch_sql);
+        $feed_fetch_sql = "SELECT * FROM posts";
+        $result = $conn->query($feed_fetch_sql) or die($conn->error);
 
         // 2 - Analysis ? idk lol:
-        if($result->num_rows > 0) {
+        if(TRUE) {
             while($row = $result->fetch_assoc()) {
                 echo "Post " . $row['postid'] . ", title " . $row['title'] . ", body " . $row['body'] . ", by " . $row['alias'] . " (alias)!";
             }

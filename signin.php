@@ -8,9 +8,9 @@
     <?php
     function login() {
         $servername = "localhost";
-        $username = "id18724764_bestcode123";
-        $password = "LkT*tiZHpXgE15is";
-        $database = "id18724764_main_database";
+        $username = "id18924381_root";
+        $password = "GSkN|x55\Jrh+]48";
+        $database = "id18924381_main";
 
         $conn = new mysqli($servername, $username, $password, $database);
 
@@ -21,7 +21,7 @@
         $sql = "INSERT INTO userinfo (username, password) VALUES (\"" . $_POST['username'] . "\", \"" . $_POST['password'] . "\");";
 
         if($conn->query($sql) === FALSE) {
-            die("ERROR");
+            die($conn->error);
         }
 
         $conn->close();
@@ -31,7 +31,6 @@
         login();
     }
     
-    $conn->close();
     ?>
     <div class="login_panel">
         <form name="loginform" action="" method="post">

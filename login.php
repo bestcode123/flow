@@ -15,9 +15,9 @@
     
     function login() {
         $servername = "localhost";
-        $username = "id18724764_bestcode123";
-        $password = "LkT*tiZHpXgE15is";
-        $database = "id18724764_main_database";
+        $username = "id18924381_root";
+        $password = "GSkN|x55\Jrh+]48";
+        $database = "id18924381_main";
         $conn = new mysqli($servername, $username, $password, $database);
 
         if ($conn->connect_error) {

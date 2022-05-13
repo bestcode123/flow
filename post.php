@@ -14,9 +14,9 @@
     function login() {
         // Connection To Database:
         $servername = "localhost";
-        $username = "id18724764_bestcode123";
-        $password = "LkT*tiZHpXgE15is";
-        $database = "id18724764_main_database";
+        $username = "id18924381_root";
+        $password = "GSkN|x55\Jrh+]48";
+        $database = "id18924381_main";
         $conn = new mysqli($servername, $username, $password, $database);
         if($conn->connect_error) {
             die("connection Error: " . $conn->connect_error);
@@ -25,7 +25,8 @@
         // Login Credential Retreival:
         $login_sql = "SELECT uid, username, password FROM userinfo";
         $result = $conn->query($login_sql);
-
+        
+        /*
         // Login Credential Authentication:
         $in = FALSE;
         $uid = 0;
@@ -37,29 +38,27 @@
                   $usrn = $row['username'];
                   $psw = $row['password'];
                   $uid = $row['uid']; 
+                  
               }
             }
           } else {
             echo "There is not an account linked to this username";
-        }
+        } */
+        
+        $sql = "INSERT INTO posts (title, body, alias) VALUES (\"" . $_POST['post_title'] . "\", \"" . $_POST['post_body'] . "\", \"" . $_POST['post_alias'] . "\");";
 
-        // Post Information Retreival;
-        $post_title = $_POST['post_title'];
-        $post_body = $_POST['post_body'];
-        $post_alias = $_POST['post_alias'];
-
-        // Post Database Implementation:
-        if(TRUE) {
-            $post_sql = "INSERT INTO posts (title, body, alias) VALUES (\"" . $post_title . "\", \"" . $post_body . "\", \"" . $post_alias . "\")";
-            $conn->query($post_sql);
+        if($conn->query($sql) === FALSE) {
+            die($conn->error);
         }
 
         if(isset($_POST['submit'])) {
             login();
         }
+    
+        $conn->close();
     }
 
-    $conn->close();
+    
     ?>
     <div class="enter_info">
         <form name="post_form" action="" method="post">
